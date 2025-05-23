@@ -1,20 +1,32 @@
 document.addEventListener('DOMContentLoaded', () => {
   const shareBtn = document.getElementById('share-button');
-  const tooltipMobile = document.getElementById('mobile-tooltip');
-  const footer = document.getElementById('card-footer');
+  const desktopTooltip = document.getElementById('desktop-tooltip');
 
-  shareBtn.addEventListener('click', () => {
-    if (window.innerWidth <= 768) {
+  shareBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isMobile = window.innerWidth <= 768;
+
+    if (isMobile) {
       document.body.classList.toggle('share-mode');
+    } else {
+      desktopTooltip.style.display =
+        desktopTooltip.style.display === 'flex' ? 'none' : 'flex';
     }
   });
 
   document.addEventListener('click', (e) => {
-    const insideTooltip = e.target.closest('#mobile-tooltip');
-    const insideButton = e.target.closest('#share-button');
+    const isMobile = window.innerWidth <= 768;
+    const insideShare = e.target.closest('#share-button');
+    const insideMobileTooltip = e.target.closest('#mobile-tooltip');
 
-    if (!insideTooltip && !insideButton && window.innerWidth <= 768) {
-      document.body.classList.remove('share-mode');
+    if (isMobile) {
+      if (!insideShare && !insideMobileTooltip) {
+        document.body.classList.remove('share-mode');
+      }
+    } else {
+      if (!e.target.closest('#desktop-tooltip') && !insideShare) {
+        desktopTooltip.style.display = 'none';
+      }
     }
   });
 });

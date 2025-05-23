@@ -101,11 +101,6 @@ body {
   color: var(--clr-date);
 }
 
-.card__share-icon {
-  width: 20px;
-  cursor: pointer;
-}
-
 .card__share {
   background-color: var(--clr-bg);
   border-radius: 100%;
@@ -114,6 +109,11 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.card__share-icon {
+  width: 20px;
+  cursor: pointer;
 }
 
 .card__share-tooltip {
@@ -151,6 +151,7 @@ body {
   display: none;
 }
 
+/* Mobile version */
 @media (max-width: 768px) {
   .card {
     grid-template-columns: 1fr;
@@ -164,21 +165,8 @@ body {
     padding: 1.5rem;
   }
 
-  .card__footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .card__share {
-    width: auto;
-    background-color: transparent;
-    padding: 0;
-  }
-
-  .card__share-icon {
-    margin-left: auto;
-    margin-right: 0;
+  .card__share-tooltip {
+    display: none !important;
   }
 
   .mobile-tooltip {
